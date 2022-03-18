@@ -84,7 +84,7 @@ type partitionConsumerOpts struct {
 	replicateSubscriptionState bool
 	startMessageID             trackingMessageID
 	startMessageIDInclusive    bool
-	subscriptionMode           subscriptionMode
+	subscriptionMode           SubscriptionMode
 	readCompacted              bool
 	disableForceTopicCreation  bool
 	interceptors               ConsumerInterceptors
