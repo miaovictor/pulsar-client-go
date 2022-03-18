@@ -62,6 +62,17 @@ const (
 	SubscriptionPositionEarliest
 )
 
+type SubscriptionMode int
+
+const (
+	// Durable Make the subscription to be backed by a durable cursor that will retain messages and persist the current
+	// position
+	Durable SubscriptionMode = iota
+
+	// NonDurable Lightweight subscription mode that doesn't have a durable cursor associated
+	NonDurable
+)
+
 // DLQPolicy represents the configuration for the Dead Letter Queue consumer policy.
 type DLQPolicy struct {
 	// MaxDeliveries specifies the maximum number of times that a message will be delivered before being
@@ -110,6 +121,10 @@ type ConsumerOptions struct {
 	// Type specifies the subscription type to be used when subscribing to a topic.
 	// Default is `Exclusive`
 	Type SubscriptionType
+
+	// Mode specifies the subscription mode to be used when subscribing to a topic.
+	// Default is `Durable`
+	Mode SubscriptionMode
 
 	// SubscriptionInitialPosition is the initial position at which the cursor will be set when subscribe
 	// Default is `Latest`
